@@ -2,13 +2,14 @@ package jp.thotta.ifinance.common.entity;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class News {
@@ -24,8 +25,17 @@ public class News {
 
   private String description;
 
+  @Column(nullable = false)
+  private Date announcedDate;
+
+  @Column(nullable = false)
+  private Date collectedDate;
+
+  @ManyToOne
+  private Subscription subscription;
+
   @OneToMany(mappedBy = "news")
-  private List<NewsIndustry> newsIndustryList = new ArrayList<NewsIndustry>();
+  private List<NewsIndustry> newsIndustries = new ArrayList<NewsIndustry>();
 
   public News() {}
 
@@ -57,11 +67,35 @@ public class News {
     this.description = description;
   }
 
-  public List<NewsIndustry> getNewsIndustryList() {
-    return newsIndustryList;
+  public Date getAnnouncedDate() {
+    return announcedDate;
+  }
+
+  public void setAnnouncedDate(Date announcedDate) {
+    this.announcedDate = announcedDate;
+  }
+
+  public Date getCollectedDate() {
+    return collectedDate;
+  }
+
+  public void setCollectedDate(Date collectedDate) {
+    this.collectedDate = collectedDate;
+  }
+
+  public Subscription getSubscription() {
+    return subscription;
+  }
+
+  public void setSubscription(Subscription subscription) {
+    this.subscription = subscription;
+  }
+
+  public List<NewsIndustry> getNewsIndustries() {
+    return newsIndustries;
   }
 
   public void addIndustry(Industry industry) {
-    newsIndustryList.add(new NewsIndustry(this, industry));
+    newsIndustries.add(new NewsIndustry(this, industry));
   }
 }
