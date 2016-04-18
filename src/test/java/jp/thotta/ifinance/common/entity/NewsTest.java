@@ -29,7 +29,6 @@ public class NewsTest extends BaseEntityTest {
     news2.setTitle("google");
     news2.setDescription("google 日本");
     em.persist(news2);
-    em.flush();
     em.getTransaction().commit();
     em.close();
     assertEquals(selectAllNews().size(), 2);

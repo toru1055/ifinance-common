@@ -11,6 +11,8 @@
     <class>jp.thotta.ifinance.common.entity.Industry</class>
     <class>jp.thotta.ifinance.common.entity.News</class>
     <class>jp.thotta.ifinance.common.entity.NewsIndustry</class>
+    <class>jp.thotta.ifinance.common.entity.Scraper</class>
+    <class>jp.thotta.ifinance.common.entity.Subscription</class>
 
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
