@@ -14,6 +14,9 @@ public class Subscription {
   private Integer id;
 
   @Column(nullable = false)
+  private String name;
+
+  @Column(nullable = false)
   private String url;
 
   @ManyToOne
@@ -28,11 +31,12 @@ public class Subscription {
 
   public Subscription() {}
 
-  public Subscription(String url, Scraper scraper) {
-    this(url, scraper, false);
+  public Subscription(String name, String url, Scraper scraper) {
+    this(name, url, scraper, false);
   }
 
-  public Subscription(String url, Scraper scraper, Boolean privateFlag) {
+  public Subscription(String name, String url, Scraper scraper, Boolean privateFlag) {
+    this.name = name;
     this.url = url;
     this.scraper = scraper;
     this.privateFlag = privateFlag;
@@ -40,6 +44,14 @@ public class Subscription {
 
   public Integer getId() {
     return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getUrl() {

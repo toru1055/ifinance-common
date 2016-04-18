@@ -42,7 +42,8 @@ public class NewsTest extends BaseEntityTest {
   public void testNewsIndustry() {
     Industry industry1 = new Industry("001");
     Scraper scraper = new Scraper("aaaa");
-    Subscription subscription = new Subscription("http://www.yahoo.co.jp", scraper);
+    Subscription subscription = new Subscription(
+        "name", "http://www.yahoo.co.jp", scraper);
     News news1 = new News();
     news1.setUrl("https://www.google.co.jp");
     news1.setTitle("google");

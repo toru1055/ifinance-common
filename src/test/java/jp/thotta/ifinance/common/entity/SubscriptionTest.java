@@ -22,7 +22,7 @@ public class SubscriptionTest extends BaseEntityTest {
     Scraper scraper = new Scraper("AAAAA");
     Industry industry = new Industry("A001");
     Subscription subscription = new Subscription(
-        "http://www.yahoo.co.jp", scraper);
+        "name", "http://www.yahoo.co.jp", scraper);
     subscription.setFixedIndustry(industry);
     em.persist(industry);
     em.persist(scraper);
