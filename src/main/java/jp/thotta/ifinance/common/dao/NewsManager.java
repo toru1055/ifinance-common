@@ -13,12 +13,4 @@ public class NewsManager {
     em.getTransaction().commit();
     em.close();
   }
-
-  public void initTable() {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
-    em.getTransaction().begin();
-    em.createNativeQuery("delete from News").executeUpdate();
-    em.getTransaction().commit();
-    em.close();
-  }
 }

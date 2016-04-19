@@ -6,16 +6,6 @@ import javax.persistence.EntityManager;
 public class ScraperTest extends BaseEntityTest {
 
   @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-    EntityManager em = emf.createEntityManager();
-    em.getTransaction().begin();
-    em.createNativeQuery("delete from Scraper").executeUpdate();
-    em.getTransaction().commit();
-    em.close();
-  }
-
-  @Override
   public void testBasicUsage() {
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();

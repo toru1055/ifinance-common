@@ -2,32 +2,26 @@ package jp.thotta.ifinance.common.dao;
 
 import jp.thotta.ifinance.common.entity.Industry;
 
+import java.util.List;
 import junit.framework.TestCase;
 
 public class IndustryManagerTest extends TestCase {
+  IndustryManager industryManager = new IndustryManager();
+
   public void testBasicUsage() {
-    IndustryManager industryManager = new IndustryManager();
-    try {
-      industryManager.add(new Industry("001"));
-      industryManager.add(new Industry("002"));
-      industryManager.add(new Industry("003"));
-    } catch(Exception e) {
-      e.printStackTrace();
-      System.exit(1);
-    }
-    assertEquals(industryManager.selectAll().size(), 3);
-    for(Industry industry : industryManager.selectAll()) {
-      System.out.println(industry.getId() + ": " + industry.getName());
-    }
+    assertTrue(industryManager.add(new Industry("001")));
+    assertTrue(industryManager.add(new Industry("002")));
+    assertTrue(industryManager.add(new Industry("003")));
+    assertTrue(!industryManager.add(new Industry("001")));
+
+    Industry industry02 = industryManager.find(2);
+    assertEquals(industry02.getName(), "002");
+    assertEquals(industry02.getId(), (Integer)2);
+
+    industryManager.remove(industry02);
+
+    List<Industry> result = industryManager.selectAll();
+    assertEquals(result.size(), 2);
   }
 
-  @Override
-  protected void setUp() {
-    new IndustryManager().initTable();
-  }
-
-  @Override
-  protected void tearDown() {
-    new IndustryManager().initTable();
-  }
 }

@@ -1,44 +1,49 @@
 package jp.thotta.ifinance.common.dao;
 
-import jp.thotta.ifinance.common.entity.Industry;
-
 import java.util.List;
 import javax.persistence.EntityManager;
 
+import jp.thotta.ifinance.common.entity.Industry;
+
 public class IndustryManager {
-  public void add(Industry industry) throws Exception {
+  public boolean add(Industry industry) {
+    boolean isAdded = false;
     EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
-    em.getTransaction().begin();
-    em.persist(industry);
-    em.getTransaction().commit();
+    List<Industry> selectedIndustries = em.createQuery(
+        "from Industry where name = :name", Industry.class)
+      .setParameter("name", industry.getName())
+      .getResultList();
+    if(selectedIndustries.size() == 0) {
+      em.getTransaction().begin();
+      em.persist(industry);
+      em.getTransaction().commit();
+      isAdded = true;
+    }
     em.close();
+    return isAdded;
   }
 
-  public void add(List<Industry> industries) throws Exception {
+  public Industry find(Integer id) {
+    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    Industry industry = em.find(Industry.class, id);
+    em.close();
+    return industry;
+  }
+
+  public void remove(Industry industry) {
     EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
     em.getTransaction().begin();
-    for(Industry industry : industries) {
-      em.persist(industry);
-    }
+    em.remove(em.contains(industry) ? industry : em.merge(industry));
     em.getTransaction().commit();
     em.close();
   }
 
   public List<Industry> selectAll() {
     EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
-    em.getTransaction().begin();
     List<Industry> result = em.createQuery(
         "from Industry", Industry.class).getResultList();
-    em.getTransaction().commit();
     em.close();
     return result;
   }
 
-  public void initTable() {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
-    em.getTransaction().begin();
-    em.createNativeQuery("delete from Industry").executeUpdate();
-    em.getTransaction().commit();
-    em.close();
-  }
 }

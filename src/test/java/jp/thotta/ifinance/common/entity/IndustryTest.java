@@ -6,16 +6,6 @@ import javax.persistence.EntityManager;
 public class IndustryTest extends BaseEntityTest {
 
   @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-    EntityManager em = emf.createEntityManager();
-    em.getTransaction().begin();
-    em.createNativeQuery("delete from Industry").executeUpdate();
-    em.getTransaction().commit();
-    em.close();
-  }
-
-  @Override
   public void testBasicUsage() {
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();
