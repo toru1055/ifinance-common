@@ -8,7 +8,7 @@ import jp.thotta.ifinance.common.entity.Industry;
 public class IndustryManager {
   public boolean add(Industry industry) {
     boolean isAdded = false;
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     List<Industry> selectedIndustries = em.createQuery(
         "from Industry where name = :name", Industry.class)
       .setParameter("name", industry.getName())
@@ -24,14 +24,14 @@ public class IndustryManager {
   }
 
   public Industry find(Integer id) {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     Industry industry = em.find(Industry.class, id);
     em.close();
     return industry;
   }
 
   public void remove(Industry industry) {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     em.getTransaction().begin();
     em.remove(em.contains(industry) ? industry : em.merge(industry));
     em.getTransaction().commit();
@@ -39,7 +39,7 @@ public class IndustryManager {
   }
 
   public List<Industry> selectAll() {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     List<Industry> result = em.createQuery(
         "from Industry", Industry.class).getResultList();
     em.close();

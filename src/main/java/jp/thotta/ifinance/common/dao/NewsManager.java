@@ -7,7 +7,7 @@ import jp.thotta.ifinance.common.entity.News;
 
 public class NewsManager {
   public void add(News news) throws Exception {
-    EntityManager em = CommonEntityManager.INSTANCE.createEntityManager();
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     em.getTransaction().begin();
     em.persist(news);
     em.getTransaction().commit();

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
+// TODO: 最低クロール間隔をカラム追加
 @Entity
 public class Subscription {
   @Id
