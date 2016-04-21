@@ -12,6 +12,9 @@ public class SubscriptionManager {
     try {
       em.getTransaction().begin();
       em.merge(subscription.getScraper());
+      if(subscription.getFixedIndustry() != null) {
+        em.merge(subscription.getFixedIndustry());
+      }
       em.persist(subscription);
       em.getTransaction().commit();
       isAdded = true;
@@ -21,6 +24,22 @@ public class SubscriptionManager {
       em.close();
     }
     return isAdded;
+  }
+
+  public boolean update(Subscription subscription) {
+    boolean isUpdated = false;
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.merge(subscription);
+      em.getTransaction().commit();
+      isUpdated = true;
+    } catch(Exception e) {
+      isUpdated = false;
+    } finally {
+      em.close();
+    }
+    return isUpdated;
   }
 
   public Subscription find(Integer id) {
