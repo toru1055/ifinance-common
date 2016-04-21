@@ -17,7 +17,6 @@ public class IndustryManagerTest extends TestCase {
     assertEquals(industry02.getName(), "002");
     assertEquals(industry02.getId(), (Integer)2);
     industryManager.remove(2);
-
     List<Industry> result = industryManager.selectAll();
     assertEquals(result.size(), 2);
   }
