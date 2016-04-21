@@ -18,7 +18,7 @@ public class ScraperManagerTest extends TestCase {
     assertEquals(scraper02.getName(), "002");
     assertEquals(scraper02.getId(), (Integer)2);
 
-    scraperManager.remove(scraper02);
+    scraperManager.remove(2);
 
     List<Scraper> result = scraperManager.selectAll();
     assertEquals(result.size(), 2);

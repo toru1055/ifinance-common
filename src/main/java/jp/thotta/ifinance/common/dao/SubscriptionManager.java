@@ -3,48 +3,47 @@ package jp.thotta.ifinance.common.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-import jp.thotta.ifinance.common.entity.Industry;
+import jp.thotta.ifinance.common.entity.Subscription;
 
-public class IndustryManager {
-  public boolean add(Industry industry) {
+public class SubscriptionManager {
+  public boolean add(Subscription subscription) {
     boolean isAdded = false;
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
-    List<Industry> selectedIndustries = em.createQuery(
-        "from Industry where name = :name", Industry.class)
-      .setParameter("name", industry.getName())
-      .getResultList();
-    if(selectedIndustries.size() == 0) {
+    try {
       em.getTransaction().begin();
-      em.persist(industry);
+      em.merge(subscription.getScraper());
+      em.persist(subscription);
       em.getTransaction().commit();
       isAdded = true;
+    } catch(Exception e) {
+      isAdded = false;
+    } finally {
+      em.close();
     }
-    em.close();
     return isAdded;
   }
 
-  public Industry find(Integer id) {
+  public Subscription find(Integer id) {
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
-    Industry industry = em.find(Industry.class, id);
+    Subscription subscription = em.find(Subscription.class, id);
     em.close();
-    return industry;
+    return subscription;
   }
 
   public void remove(Integer id) {
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     em.getTransaction().begin();
-    Industry industry = em.find(Industry.class, id);
-    em.remove(industry);
+    Subscription subscription = em.find(Subscription.class, id);
+    em.remove(subscription);
     em.getTransaction().commit();
     em.close();
   }
 
-  public List<Industry> selectAll() {
+  public List<Subscription> selectAll() {
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
-    List<Industry> result = em.createQuery(
-        "from Industry", Industry.class).getResultList();
+    List<Subscription> result = em.createQuery(
+        "from Subscription", Subscription.class).getResultList();
     em.close();
     return result;
   }
-
 }

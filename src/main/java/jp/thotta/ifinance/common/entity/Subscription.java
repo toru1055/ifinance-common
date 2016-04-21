@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
-// TODO: 最低クロール間隔をカラム追加
 @Entity
 public class Subscription {
   @Id
@@ -26,6 +25,9 @@ public class Subscription {
 
   @Column(nullable = false)
   private Boolean privateFlag;
+
+  @Column(nullable = false)
+  private Integer interval = 60;
 
   @ManyToOne
   private Industry fixedIndustry;
@@ -77,6 +79,14 @@ public class Subscription {
 
   public void setPrivateFlag(Boolean privateFlag) {
     this.privateFlag = privateFlag;
+  }
+
+  public Integer getInterval() {
+    return interval;
+  }
+
+  public void setInterval(Integer interval) {
+    this.interval = interval;
   }
 
   public Industry getFixedIndustry() {

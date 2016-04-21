@@ -47,10 +47,11 @@ public class ScraperManager {
     return scraper;
   }
 
-  public void remove(Scraper scraper) {
+  public void remove(Integer id) {
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     em.getTransaction().begin();
-    em.remove(em.contains(scraper) ? scraper : em.merge(scraper));
+    Scraper scraper = em.find(Scraper.class, id);
+    em.remove(scraper);
     em.getTransaction().commit();
     em.close();
   }
