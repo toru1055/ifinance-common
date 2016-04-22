@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 
 @Entity
 public class News {
@@ -34,7 +36,7 @@ public class News {
   @ManyToOne
   private Subscription subscription;
 
-  @OneToMany(mappedBy = "news")
+  @OneToMany(mappedBy = "news", fetch = FetchType.EAGER)
   private List<NewsIndustry> newsIndustries = new ArrayList<NewsIndustry>();
 
   public News() {}

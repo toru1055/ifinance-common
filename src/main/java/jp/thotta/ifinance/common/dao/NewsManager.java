@@ -17,7 +17,13 @@ public class NewsManager {
       .getResultList();
     if(newsList.size() == 0) {
       em.getTransaction().begin();
+      for(NewsIndustry newsIndustry : news.getNewsIndustries()) {
+        em.merge(newsIndustry.getIndustry());
+      }
       em.persist(news);
+      for(NewsIndustry newsIndustry : news.getNewsIndustries()) {
+        em.persist(newsIndustry);
+      }
       em.getTransaction().commit();
       isAdded = true;
     }
