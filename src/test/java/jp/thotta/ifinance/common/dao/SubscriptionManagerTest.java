@@ -22,13 +22,12 @@ public class SubscriptionManagerTest extends TestCase {
             "name2", "url2", scraperManager.find(2))));
     assertTrue(subscriptionManager.add(new Subscription(
             "name3", "url3", scraperManager.find(3))));
-    Subscription subscription02 = subscriptionManager.find(5);
+    Subscription subscription02 = subscriptionManager.find(2);
     assertTrue(subscription02 != null);
     assertEquals(subscription02.getName(), "name2");
-    assertEquals(subscription02.getId(), (Integer)5);
+    assertEquals(subscription02.getId(), (Integer)2);
     assertEquals(subscription02.getScraper().getName(), "002");
-    subscriptionManager.remove(5);
-
+    subscriptionManager.remove(2);
     List<Subscription> result = subscriptionManager.selectAll();
     assertEquals(result.size(), 2);
   }
@@ -49,7 +48,7 @@ public class SubscriptionManagerTest extends TestCase {
     assertTrue(subscriptionManager.add(subscription01));
     assertTrue(subscriptionManager.add(subscription02));
     assertTrue(subscriptionManager.add(subscription03));
-    Subscription subscription = subscriptionManager.find(5);
+    Subscription subscription = subscriptionManager.find(1);
     assertEquals(subscription.getFixedIndustry().getName(), "industry001");
   }
 
@@ -63,12 +62,12 @@ public class SubscriptionManagerTest extends TestCase {
     Subscription subscription01 = new Subscription("name1", "url1", scraper01);
     subscription01.setFixedIndustry(industry1);
     subscriptionManager.add(subscription01);
-    Subscription subscription02 = subscriptionManager.find(4);
+    Subscription subscription02 = subscriptionManager.find(1);
     subscription02.setName("updated name");
     subscription02.setUrl("updated url");
     subscription02.setScraper(scraper02);
     assertTrue(subscriptionManager.update(subscription02));
-    Subscription subscription03 = subscriptionManager.find(4);
+    Subscription subscription03 = subscriptionManager.find(1);
     assertEquals(subscription03.getName(), "updated name");
     assertEquals(subscription03.getScraper().getName(), "scraper002");
   }

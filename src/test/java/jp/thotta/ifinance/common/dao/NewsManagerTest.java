@@ -31,14 +31,14 @@ public class NewsManagerTest extends TestCase {
     news.setSubscription(subscription);
     news.addIndustry(industry);
     assertTrue(newsManager.add(news));
-    News news1 = newsManager.find(4L);
+    News news1 = newsManager.find(1L);
     assertEquals(news1.getNewsIndustries().size(), 1);
     assertEquals(news1.getNewsIndustries().get(0).getIndustry().getName(), "industry1");
     assertEquals(news1.getTitle(), "title1");
     assertEquals(news1.getSubscription().getName(), "name1");
     news1.setTitle("updated title");
     assertTrue(newsManager.update(news1));
-    News news2 = newsManager.find(4L);
+    News news2 = newsManager.find(1L);
     assertEquals(news2.getNewsIndustries().get(0).getIndustry().getName(), "industry1");
     assertEquals(news2.getTitle(), "updated title");
   }
