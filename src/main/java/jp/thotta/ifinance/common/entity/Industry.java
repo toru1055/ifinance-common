@@ -6,9 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
+import java.io.Serializable;
 
 @Entity
-public class Industry {
+public class Industry implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -28,6 +29,10 @@ public class Industry {
 
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override

@@ -26,20 +26,22 @@ public class SubscriptionManager {
     return isAdded;
   }
 
-  public boolean update(Subscription subscription) {
-    boolean isUpdated = false;
+  public boolean _import(List<Subscription> subscriptions) {
+    boolean isAdded = false;
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     try {
       em.getTransaction().begin();
-      em.merge(subscription);
+      for(Subscription subscription : subscriptions) {
+        em.merge(subscription);
+      }
       em.getTransaction().commit();
-      isUpdated = true;
+      isAdded = true;
     } catch(Exception e) {
-      isUpdated = false;
+      isAdded = false;
     } finally {
       em.close();
     }
-    return isUpdated;
+    return isAdded;
   }
 
   public Subscription find(Integer id) {
@@ -56,6 +58,22 @@ public class SubscriptionManager {
     em.remove(subscription);
     em.getTransaction().commit();
     em.close();
+  }
+
+  public boolean update(Subscription subscription) {
+    boolean isUpdated = false;
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.merge(subscription);
+      em.getTransaction().commit();
+      isUpdated = true;
+    } catch(Exception e) {
+      isUpdated = false;
+    } finally {
+      em.close();
+    }
+    return isUpdated;
   }
 
   public List<Subscription> selectAll() {

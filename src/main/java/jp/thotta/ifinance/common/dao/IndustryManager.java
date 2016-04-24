@@ -23,6 +23,24 @@ public class IndustryManager {
     return isAdded;
   }
 
+  public boolean _import(List<Industry> industries) {
+    boolean isAdded = false;
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
+    try {
+      em.getTransaction().begin();
+      for(Industry industry : industries) {
+        em.merge(industry);
+      }
+      em.getTransaction().commit();
+      isAdded = true;
+    } catch(Exception e) {
+      isAdded = false;
+    } finally {
+      em.close();
+    }
+    return isAdded;
+  }
+
   public Industry find(Integer id) {
     EntityManager em = CommonEntityManager.getFactory().createEntityManager();
     Industry industry = em.find(Industry.class, id);
@@ -37,6 +55,22 @@ public class IndustryManager {
     em.remove(industry);
     em.getTransaction().commit();
     em.close();
+  }
+
+  public boolean update(Industry industry) {
+    boolean isUpdated = false;
+    EntityManager em = CommonEntityManager.getFactory().createEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.merge(industry);
+      em.getTransaction().commit();
+      isUpdated = true;
+    } catch(Exception e) {
+      isUpdated = false;
+    } finally {
+      em.close();
+    }
+    return isUpdated;
   }
 
   public List<Industry> selectAll() {
