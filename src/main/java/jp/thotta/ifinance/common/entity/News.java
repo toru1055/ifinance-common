@@ -20,12 +20,13 @@ public class News {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   
-  @Column(nullable = false, unique=true)
+  @Column(nullable = false, unique=true, columnDefinition="text")
   private String url;
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition="text")
   private String title;
 
+  @Column(columnDefinition="text")
   private String description;
 
   @Column(nullable = false)
