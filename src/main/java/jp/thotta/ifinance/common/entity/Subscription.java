@@ -1,5 +1,6 @@
 package jp.thotta.ifinance.common.entity;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,8 @@ public class Subscription implements Serializable {
 
   @Column(nullable = false)
   private Integer interval = 60;
+
+  private Date lastReadDate = null;
 
   @ManyToOne
   private Industry fixedIndustry;
@@ -89,6 +92,14 @@ public class Subscription implements Serializable {
 
   public void setInterval(Integer interval) {
     this.interval = interval;
+  }
+
+  public Date getLastReadDate() {
+    return lastReadDate;
+  }
+
+  public void setLastReadDate(Date lastReadDate) {
+    this.lastReadDate = lastReadDate;
   }
 
   public Industry getFixedIndustry() {
