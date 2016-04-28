@@ -30,7 +30,7 @@ public class Subscription implements Serializable {
   private Boolean privateFlag;
 
   @Column(nullable = false)
-  private Integer interval = 60;
+  private Integer interval = 600;
 
   private Date lastReadDate = null;
 
