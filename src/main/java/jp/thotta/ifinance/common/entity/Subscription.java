@@ -98,8 +98,17 @@ public class Subscription implements Serializable {
     return lastReadDate;
   }
 
-  public void setLastReadDate(Date lastReadDate) {
-    this.lastReadDate = lastReadDate;
+  public boolean isReadable() {
+    Date now = new Date();
+    int t = Integer.MAX_VALUE;
+    if(lastReadDate != null) {
+      t = (int)((now.getTime() - lastReadDate.getTime()) / 1000L);
+    }
+    return (t > this.interval);
+  }
+
+  public void setLastReadDate() {
+    this.lastReadDate = new Date();
   }
 
   public Industry getFixedIndustry() {
