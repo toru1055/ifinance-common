@@ -1,105 +1,97 @@
 package jp.thotta.ifinance.common.entity;
 
-import java.util.List;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import java.util.List;
 
 @Entity
 public class News {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  
-  @Column(nullable = false, unique=true, columnDefinition="text")
-  private String url;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Column(nullable = false, columnDefinition="text")
-  private String title;
+    @Column(nullable = false, unique = true, columnDefinition = "text")
+    private String url;
 
-  @Column(columnDefinition="text")
-  private String description;
+    @Column(nullable = false, columnDefinition = "text")
+    private String title;
 
-  @Column(nullable = false)
-  private Date announcedDate;
+    @Column(columnDefinition = "text")
+    private String description;
 
-  @Column(nullable = false)
-  private Date collectedDate;
+    @Column(nullable = false)
+    private Date announcedDate;
 
-  @ManyToOne
-  private Subscription subscription;
+    @Column(nullable = false)
+    private Date collectedDate;
 
-  @OneToMany(mappedBy = "news", fetch = FetchType.EAGER)
-  private List<NewsIndustry> newsIndustries = new ArrayList<NewsIndustry>();
+    @ManyToOne
+    private Subscription subscription;
 
-  public News() {}
+    @OneToMany(mappedBy = "news", fetch = FetchType.EAGER)
+    private List<NewsIndustry> newsIndustries = new ArrayList<NewsIndustry>();
 
-  public Long getId() {
-    return id;
-  }
+    public News() {
+    }
 
-  public String getUrl() {
-    return url;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public String getUrl() {
+        return url;
+    }
 
-  public String getTitle() {
-    return title;
-  }
-  
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public Date getAnnouncedDate() {
-    return announcedDate;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setAnnouncedDate(Date announcedDate) {
-    this.announcedDate = announcedDate;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public Date getCollectedDate() {
-    return collectedDate;
-  }
+    public Date getAnnouncedDate() {
+        return announcedDate;
+    }
 
-  public void setCollectedDate(Date collectedDate) {
-    this.collectedDate = collectedDate;
-  }
+    public void setAnnouncedDate(Date announcedDate) {
+        this.announcedDate = announcedDate;
+    }
 
-  public Subscription getSubscription() {
-    return subscription;
-  }
+    public Date getCollectedDate() {
+        return collectedDate;
+    }
 
-  public void setSubscription(Subscription subscription) {
-    this.subscription = subscription;
-  }
+    public void setCollectedDate(Date collectedDate) {
+        this.collectedDate = collectedDate;
+    }
 
-  public List<NewsIndustry> getNewsIndustries() {
-    return newsIndustries;
-  }
+    public Subscription getSubscription() {
+        return subscription;
+    }
 
-  public void addIndustry(Industry industry) {
-    newsIndustries.add(new NewsIndustry(this, industry));
-  }
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
+    public List<NewsIndustry> getNewsIndustries() {
+        return newsIndustries;
+    }
+
+    public void addIndustry(Industry industry) {
+        newsIndustries.add(new NewsIndustry(this, industry));
+    }
 }
