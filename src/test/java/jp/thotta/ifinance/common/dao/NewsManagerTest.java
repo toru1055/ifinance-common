@@ -1,13 +1,14 @@
 package jp.thotta.ifinance.common.dao;
 
-import java.util.List;
-import java.util.Date;
-import junit.framework.TestCase;
-
+import jp.thotta.ifinance.common.entity.Industry;
 import jp.thotta.ifinance.common.entity.News;
 import jp.thotta.ifinance.common.entity.Scraper;
-import jp.thotta.ifinance.common.entity.Industry;
 import jp.thotta.ifinance.common.entity.Subscription;
+import junit.framework.TestCase;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class NewsManagerTest extends TestCase {
   NewsManager newsManager = new NewsManager();
@@ -36,11 +37,17 @@ public class NewsManagerTest extends TestCase {
     assertEquals(news1.getNewsIndustries().get(0).getIndustry().getName(), "industry1");
     assertEquals(news1.getTitle(), "title1");
     assertEquals(news1.getSubscription().getName(), "name1");
+
     news1.setTitle("updated title");
     assertTrue(newsManager.update(news1));
     News news2 = newsManager.find(1L);
     assertEquals(news2.getNewsIndustries().get(0).getIndustry().getName(), "industry1");
     assertEquals(news2.getTitle(), "updated title");
+
+    List<Integer> ids = new ArrayList<Integer>();
+    ids.add(industry.getId());
+    List<News> newsList = newsManager.recentList(ids);
+    assertEquals(newsList.size(), 1);
   }
 
   @Override
