@@ -1,17 +1,20 @@
 # ifinance-common
 ## 環境構築
 ### PostgreSQL構築
-1. Install PostgreSQL
+* Install PostgreSQL
 ```
 $ yum install postgresql-server
 $ service postgresql initdb
 $ chkconfig postgresql on
 ```
-2. Start PostgreSQL
+* Start PostgreSQL
 ```
 $ sudo -u postgres pg_ctl start -D /var/lib/pgsql/data
 ```
-3. Initialize for ifinance
+* Initialize for ifinance
 ```
 $ sudo -u postgres psql postgres
+
+postgres=# CREATE USER ifinance;
+postgres=# create database ifinance Encoding 'UTF8' lc_collate 'ja_JP.UTF-8' lc_ctype 'ja_JP.UTF-8' Owner ifinance;
 ```
