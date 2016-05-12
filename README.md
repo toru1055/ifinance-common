@@ -45,7 +45,7 @@ $ git clone git@github.com:toru1055/ifinance-api.git
 ### Initialize applications
 * Insert active scrapers to DB
 ```
-$ ifinance-batch/bin/ifinance-scraper-init 
+$ /var/apps/ifinance-batch/bin/ifinance-scraper-init 
 ```
 * Add industries
 ```
