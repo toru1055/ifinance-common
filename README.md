@@ -16,5 +16,10 @@ $ sudo -u postgres pg_ctl start -D /var/lib/pgsql/data
 $ sudo -u postgres psql postgres
 
 postgres=# CREATE USER ifinance;
-postgres=# create database ifinance Encoding 'UTF8' lc_collate 'ja_JP.UTF-8' lc_ctype 'ja_JP.UTF-8' Owner ifinance;
+postgres=# create database ifinance 
+Encoding 'UTF8' 
+lc_collate 'ja_JP.UTF-8' 
+lc_ctype 'ja_JP.UTF-8' 
+Owner ifinance
+TEMPLATE template0;
 ```
