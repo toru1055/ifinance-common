@@ -13,7 +13,6 @@ $ sudo -u postgres pg_ctl start -D /var/lib/pgsql/data
 ```
 * Initialize for ifinance
 ```
-$ 
 $ sudo -u postgres psql postgres
 
 postgres=# CREATE USER ifinance;
