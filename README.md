@@ -32,3 +32,12 @@ $ sudo -u postgres pg_ctl restart -D /var/lib/pgsql/data
 ```
 
 ### Install ifinance applications
+* [ifinance-batch](https://github.com/toru1055/ifinance-batch)
+* [ifinance-admin](https://github.com/toru1055/ifinance-admin)
+* [ifinance-api](https://github.com/toru1055/ifinance-api)
+```
+$ cd /var/apps
+$ git clone git@github.com:toru1055/ifinance-batch.git
+$ git clone git@github.com:toru1055/ifinance-admin.git
+$ git clone git@github.com:toru1055/ifinance-api.git
+```
