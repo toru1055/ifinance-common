@@ -47,9 +47,23 @@ $ git clone git@github.com:toru1055/ifinance-api.git
 ```
 $ /var/apps/ifinance-batch/bin/ifinance-scraper-init 
 ```
-* Add industries
+* Add Industries and Subscriptions
 ```
+$ /var/apps/ifinance-admin/bin/ifinance-admin 
+ifinance> industry add
+...
+ifinance> subscription add
+...
 ```
-* Add subscriptions
+
+### Start ifinance application
+* Start Subscription
 ```
+$ cd /var/log/ifinance/
+$ nohup /var/apps/ifinance-batch/bin/ifinance-subscription daemon > subscription.out 2> subscription.err &
+```
+* Start WebApi
+```
+$ cd /var/log/ifinance/
+$ nohup java -jar /var/apps/ifinance-api/bin/ifinance-api-1.0-SNAPSHOT.jar > api.out 2> api.err &
 ```
