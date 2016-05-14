@@ -26,6 +26,9 @@ public class News {
     @Column(nullable = false)
     private Date collectedDate;
 
+    @Column(nullable = false)
+    private Integer clicks = 0;
+
     @ManyToOne
     private Subscription subscription;
 
@@ -93,5 +96,13 @@ public class News {
 
     public void addIndustry(Industry industry) {
         newsIndustries.add(new NewsIndustry(this, industry));
+    }
+
+    public Integer getClicks() {
+        return clicks;
+    }
+
+    public void incrementClicks() {
+        this.clicks += 1;
     }
 }

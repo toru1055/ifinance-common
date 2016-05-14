@@ -31,18 +31,6 @@ public class NewsManager {
         return isAdded;
     }
 
-  /*
-   * ifinance=> select news.title from news, newsindustry
-   * where news.announcedDate > '2016-05-01'
-   * and news.id = newsindustry.news_id
-   * and newsindustry.industry_id = 4
-   * order by news.announceddate desc limit 30;
-   *
-   * ifinance=> select current_timestamp - interval '1 week' as day;
-   *
-   * http://stackoverflow.com/questions/4378824/adding-in-clause-list-to-a-jpa-query
-   */
-
     /*
      * 業種リストに対応する直近のニュースリストを返却.
      */
@@ -66,6 +54,25 @@ public class NewsManager {
         return newsList;
     }
 
+    public List<News> clickRanking(List<Integer> industries) {
+        EntityManager em = CommonEntityManager.getFactory().createEntityManager();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -7);
+        List<News> newsList = em.createQuery(
+                "select n from News n, NewsIndustry ni " +
+                        "where n.id = ni.news.id " +
+                        "and ni.industry.id in (:industryList) " +
+                        "and n.announcedDate > :announcedDate " +
+                        "order by n.clicks desc, n.announcedDate ",
+                News.class)
+                .setParameter("industryList", industries)
+                .setParameter("announcedDate", calendar.getTime())
+                .setFirstResult(0)
+                .setMaxResults(30)
+                .getResultList();
+        em.close();
+        return newsList;
+    }
 
     public boolean update(News news) {
         boolean isUpdated = false;
