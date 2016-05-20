@@ -31,6 +31,8 @@ public class Subscription implements Serializable {
     @ManyToOne
     private Industry fixedIndustry;
 
+    private Boolean activeFlag = true;
+
     public Subscription() {
     }
 
@@ -112,5 +114,13 @@ public class Subscription implements Serializable {
 
     public void setFixedIndustry(Industry fixedIndustry) {
         this.fixedIndustry = fixedIndustry;
+    }
+
+    public void setActiveFlag(Boolean activeFlag) {
+        this.activeFlag = activeFlag;
+    }
+
+    public Boolean isActive() {
+        return (activeFlag == null || activeFlag);
     }
 }
