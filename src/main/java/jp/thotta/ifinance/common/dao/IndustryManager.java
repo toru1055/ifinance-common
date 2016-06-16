@@ -5,6 +5,7 @@ import jp.thotta.ifinance.common.entity.Industry;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@Deprecated
 public class IndustryManager {
     public boolean add(Industry industry) {
         boolean isAdded = false;

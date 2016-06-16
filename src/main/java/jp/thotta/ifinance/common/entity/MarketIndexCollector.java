@@ -3,8 +3,11 @@ package jp.thotta.ifinance.common.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Created by thotta on 2016/06/09.
+ */
 @Entity
-public class Scraper implements MasterData {
+public class MarketIndexCollector implements MasterData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -12,10 +15,10 @@ public class Scraper implements MasterData {
     @Column(nullable = false, unique = true)
     private String name;
 
-    public Scraper() {
+    public MarketIndexCollector() {
     }
 
-    public Scraper(String name) {
+    public MarketIndexCollector(String name) {
         this.name = name;
     }
 
@@ -29,5 +32,13 @@ public class Scraper implements MasterData {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MarketIndexCollector{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

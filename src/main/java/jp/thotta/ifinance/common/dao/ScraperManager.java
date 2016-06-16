@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.util.List;
 
+@Deprecated
 public class ScraperManager {
     public boolean add(Scraper scraper) {
         boolean isAdded = false;
