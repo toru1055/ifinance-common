@@ -1,13 +1,12 @@
 package jp.thotta.ifinance.common.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by thotta on 2016/06/09.
  */
 @Entity
-public class MarketIndexCollector implements MasterData {
+public class MarketIndexCollector implements KeyValueData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

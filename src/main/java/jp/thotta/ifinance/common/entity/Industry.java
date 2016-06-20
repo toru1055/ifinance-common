@@ -1,10 +1,9 @@
 package jp.thotta.ifinance.common.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Industry implements MasterData {
+public class Industry implements KeyValueData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

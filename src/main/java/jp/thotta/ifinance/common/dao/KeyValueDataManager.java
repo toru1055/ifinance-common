@@ -1,7 +1,6 @@
 package jp.thotta.ifinance.common.dao;
 
-import jp.thotta.ifinance.common.entity.MarketIndexCollector;
-import jp.thotta.ifinance.common.entity.MasterData;
+import jp.thotta.ifinance.common.entity.KeyValueData;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -10,20 +9,20 @@ import java.util.List;
 /**
  * Created by thotta on 2016/06/14.
  */
-public class MasterDataManager<T extends MasterData> {
+public class KeyValueDataManager<T extends KeyValueData> {
     Class<T> clazz;
 
-    public MasterDataManager(Class<T> clazz) {
+    public KeyValueDataManager(Class<T> clazz) {
         this.clazz = clazz;
     }
 
-    public boolean add(T masterData) {
+    public boolean add(T t) {
         boolean isAdded = false;
         EntityManager em = CommonEntityManager.getFactory().createEntityManager();
-        T data = findByName(masterData.getName());
+        T data = findByName(t.getName());
         if(data == null) {
             em.getTransaction().begin();
-            em.persist(masterData);
+            em.persist(t);
             em.getTransaction().commit();
             isAdded = true;
         }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * Created by thotta on 2016/06/14.
  */
-public interface MasterData extends Serializable {
+public interface KeyValueData extends Serializable {
     Integer getId();
     String getName();
     void setName(String name);
