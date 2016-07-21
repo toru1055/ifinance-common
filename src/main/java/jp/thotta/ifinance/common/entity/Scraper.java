@@ -3,7 +3,7 @@ package jp.thotta.ifinance.common.entity;
 import javax.persistence.*;
 
 @Entity
-public class Scraper implements KeyValueData {
+public class Scraper implements MasterData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by thotta on 2016/06/09.
  */
 @Entity
-public class MarketIndexCollector implements KeyValueData {
+public class MarketIndexCollector implements MasterData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

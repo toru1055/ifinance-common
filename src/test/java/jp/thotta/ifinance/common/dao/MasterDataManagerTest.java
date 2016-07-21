@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * Created by thotta on 2016/06/15.
  */
-public class KeyValueDataManagerTest extends TestCase {
-    KeyValueDataManager<MarketIndexCollector> m
-            = new KeyValueDataManager<MarketIndexCollector>(MarketIndexCollector.class);
+public class MasterDataManagerTest extends TestCase {
+    MasterDataManager<MarketIndexCollector> m
+            = new MasterDataManager<MarketIndexCollector>(MarketIndexCollector.class);
 
     public void testBasicUsage() throws Exception {
         assertTrue(m.add(new MarketIndexCollector("coll1")));
