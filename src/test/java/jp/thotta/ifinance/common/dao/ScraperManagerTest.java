@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import java.util.List;
 
 public class ScraperManagerTest extends TestCase {
-    ScraperManager scraperManager = new ScraperManager();
+    MasterDataManager<Scraper> scraperManager = new MasterDataManager<Scraper>(Scraper.class);
 
     public void testBasicUsage() {
         assertTrue(scraperManager.add(new Scraper("001")));

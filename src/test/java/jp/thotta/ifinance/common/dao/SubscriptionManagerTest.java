@@ -9,8 +9,8 @@ import java.util.List;
 
 public class SubscriptionManagerTest extends TestCase {
     SubscriptionManager subscriptionManager = new SubscriptionManager();
-    ScraperManager scraperManager = new ScraperManager();
-    IndustryManager industryManager = new IndustryManager();
+    MasterDataManager<Scraper> scraperManager = new MasterDataManager<Scraper>(Scraper.class);
+    MasterDataManager<Industry> industryManager = new MasterDataManager<Industry>(Industry.class);
 
     public void testBasicUsage() {
         scraperManager.add(new Scraper("001"));

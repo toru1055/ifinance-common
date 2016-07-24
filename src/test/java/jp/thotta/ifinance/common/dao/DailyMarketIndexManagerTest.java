@@ -22,7 +22,9 @@ public class DailyMarketIndexManagerTest extends TestCase {
         MarketIndexCollector coll1 = new MarketIndexCollector("coll1");
         micm.add(coll1);
         MarketIndexMaster mim1 = new MarketIndexMaster("mim1", coll1);
+        MarketIndexMaster mim2 = new MarketIndexMaster("mim2", coll1);
         mimm.add(mim1);
+        mimm.add(mim2);
         DailyMarketIndex dmi1 = new DailyMarketIndex(mim1, new Date());
         dmi1.createPrice(0.02);
         dmi1.updatePrice(0.03);
@@ -31,6 +33,14 @@ public class DailyMarketIndexManagerTest extends TestCase {
         DailyMarketIndex dailyMarketIndex = dmim.find(1L);
         assertEquals(dailyMarketIndex.getHighestPrice(), 0.03);
         assertEquals(dailyMarketIndex.getClosingPrice(), 0.01);
+        DailyMarketIndex dmi2 = dmim.findToday(mim1);
+        assertEquals(dmi2.getHighestPrice(), 0.03);
+        dmi2.updatePrice(0.05);
+        dmim.update(dmi2);
+        DailyMarketIndex dmi3= dmim.findToday(mim1);
+        assertEquals(dmi3.getHighestPrice(), 0.05);
+        DailyMarketIndex dmi_null = dmim.findToday(mim2);
+        assertEquals(dmi_null, null);
     }
 
     @Override

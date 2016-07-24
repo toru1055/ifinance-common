@@ -12,8 +12,8 @@ import java.util.List;
 
 public class NewsManagerTest extends TestCase {
     NewsManager newsManager = new NewsManager();
-    ScraperManager scraperManager = new ScraperManager();
-    IndustryManager industryManager = new IndustryManager();
+    MasterDataManager<Scraper> scraperManager = new MasterDataManager<Scraper>(Scraper.class);
+    MasterDataManager<Industry> industryManager = new MasterDataManager<Industry>(Industry.class);
     SubscriptionManager subscriptionManager = new SubscriptionManager();
 
     public void testAdd() {

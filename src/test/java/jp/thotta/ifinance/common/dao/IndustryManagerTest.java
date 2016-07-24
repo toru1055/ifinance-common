@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import java.util.List;
 
 public class IndustryManagerTest extends TestCase {
-    IndustryManager industryManager = new IndustryManager();
+    MasterDataManager<Industry> industryManager = new MasterDataManager<Industry>(Industry.class);
 
     public void testBasicUsage() {
         assertTrue(industryManager.add(new Industry("001")));
