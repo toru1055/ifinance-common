@@ -1,9 +1,5 @@
 package jp.thotta.ifinance.common.entity;
 
-import junit.framework.TestCase;
-import org.hibernate.exception.ConstraintViolationException;
-import org.postgresql.util.PSQLException;
-
 import javax.persistence.EntityManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
