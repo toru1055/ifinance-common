@@ -96,4 +96,16 @@ public class MarketIndexMaster implements MasterData {
     public Boolean isActive() {
         return (activeFlag == null || activeFlag);
     }
+
+    @Override
+    public String toString() {
+        return "MarketIndexMaster{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", marketIndexCollector=" + marketIndexCollector +
+                ", interval=" + interval +
+                ", lastReadDate=" + lastReadDate +
+                ", activeFlag=" + activeFlag +
+                '}';
+    }
 }

@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
  */
 public class MarketIndexMasterManager
         extends MasterDataManager<MarketIndexMaster> {
-    public MarketIndexMasterManager(Class<MarketIndexMaster> clazz) {
-        super(clazz);
+    public MarketIndexMasterManager() {
+        super(MarketIndexMaster.class);
     }
 
     @Override

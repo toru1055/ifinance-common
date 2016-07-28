@@ -16,8 +16,8 @@ import java.util.Date;
  */
 public class DailyMarketIndexManager
         extends BigDataManager<DailyMarketIndex> {
-    public DailyMarketIndexManager(Class<DailyMarketIndex> clazz) {
-        super(clazz);
+    public DailyMarketIndexManager() {
+        super(DailyMarketIndex.class);
     }
 
     public DailyMarketIndex findToday(MarketIndexMaster index) {

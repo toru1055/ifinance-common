@@ -11,10 +11,8 @@ import java.util.Date;
  * Created by thotta on 2016/07/14.
  */
 public class DailyMarketIndexManagerTest extends TestCase {
-    DailyMarketIndexManager dmim =
-            new DailyMarketIndexManager(DailyMarketIndex.class);
-    MarketIndexMasterManager mimm =
-            new MarketIndexMasterManager(MarketIndexMaster.class);
+    DailyMarketIndexManager dmim = new DailyMarketIndexManager();
+    MarketIndexMasterManager mimm = new MarketIndexMasterManager();
     MasterDataManager<MarketIndexCollector> micm
             = new MasterDataManager<MarketIndexCollector>(MarketIndexCollector.class);
 

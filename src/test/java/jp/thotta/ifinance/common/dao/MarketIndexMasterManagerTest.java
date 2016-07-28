@@ -10,8 +10,7 @@ import java.util.List;
  * Created by thotta on 2016/06/22.
  */
 public class MarketIndexMasterManagerTest extends TestCase {
-    MarketIndexMasterManager mimm =
-            new MarketIndexMasterManager(MarketIndexMaster.class);
+    MarketIndexMasterManager mimm = new MarketIndexMasterManager();
     MasterDataManager<MarketIndexCollector> micm
             = new MasterDataManager<MarketIndexCollector>(MarketIndexCollector.class);
 
