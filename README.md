@@ -45,7 +45,7 @@ $ git clone git@github.com:toru1055/ifinance-api.git
 ### Initialize applications
 * Insert active scrapers to DB
 ```
-$ /var/apps/ifinance-batch/bin/ifinance-scraper-init 
+$ /var/apps/ifinance-batch/bin/ifinance-init
 ```
 * Add Industries and Subscriptions
 ```
@@ -54,13 +54,17 @@ ifinance> industry add
 ...
 ifinance> subscription add
 ...
+ifinance> mi_collector add
+...
+ifinance> mi_master add
+...
 ```
 
 ### Start ifinance application
 * Start Subscription
 ```
 $ cd /var/log/ifinance/
-$ nohup /var/apps/ifinance-batch/bin/ifinance-subscription daemon > subscription.out 2> subscription.err &
+$ nohup /var/apps/ifinance-batch/bin/ifinance-runner daemon > batch.out 2> batch.err &
 ```
 * Start WebApi
 ```
