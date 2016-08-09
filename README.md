@@ -69,5 +69,5 @@ $ nohup /var/apps/ifinance-batch/bin/ifinance-runner daemon > batch.out 2> batch
 * Start WebApi
 ```
 $ cd /var/log/ifinance/
-$ nohup java -jar /var/apps/ifinance-api/bin/ifinance-api-1.0-SNAPSHOT.jar > api.out 2> api.err &
+$ nohup java -jar /var/apps/ifinance-api/bin/ifinance-api-1.2.1.jar > api.out 2> api.err &
 ```
